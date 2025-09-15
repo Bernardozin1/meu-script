@@ -1,22 +1,28 @@
--- =========================================================
--- SCRIPT UNIFICADO (V5KTgaAS + uh8C7awT)
--- =========================================================
+--[[
+ WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local image = "91425326664161" --put your id
+local sound = "18925320031" --put your sound
+local seconds = 4 --time to destroy the gui
+local speed = 1 --audio playbackspeed, for bypass
+local start = 0 --audio time position, for bypas to
+local volume = 10 --audio volume
 
-local function safeLoad(url)
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet(url))()
-    end)
-    if not success then
-        warn("Erro ao carregar: " .. url .. " | Detalhes: " .. tostring(result))
-    end
-end
+local jumpscare = Instance.new("ScreenGui")
+jumpscare.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+jumpscare.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui") --🧐🤨...localplayer?
+local label = Instance.new("ImageLabel", jumpscare)
+label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+label.BorderSizePixel = 0
+label.Size = UDim2.new(1, 0, 1, 0)
+label.Image = "rbxassetid://"..image
+local audio = Instance.new("Sound", game.SoundService)
+audio.SoundId = "rbxassetid://"..sound
+audio.PlaybackSpeed = speed
+audio.TimePosition = start
+audio.Volume = volume
+audio:Play()
+wait(seconds)
 
--- [1] Primeiro script
-safeLoad("https://pastebin.com/raw/V5KTgaAS")
-
--- [2] Segundo script
-safeLoad("https://pastebin.com/raw/uh8C7awT")
-
--- =========================================================
--- Ambos vão executar automaticamente quando rodar esse script.
--- =========================================================
+jumpscare:Destroy()
